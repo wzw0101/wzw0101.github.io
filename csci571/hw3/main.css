@@ -1,0 +1,194 @@
+body {
+    margin: 0;
+}
+
+nav {
+    position: sticky;
+    background-color: white;
+    top: 0;
+}
+
+nav>ul {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav>ul>li {
+    padding-right: 50px;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav>ul>li:first-child {
+    padding-left: 80px;
+    padding-right: 80px;
+    color: rgb(166, 137, 74);
+}
+
+.push {
+    margin-left: auto;
+}
+
+.image3 {
+    color: white;
+    background-image: url(http://csci571.com/hw/hw3/images/image3.png);
+    background-position: center top -170px;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image3>p {
+    position: relative;
+    top: 120px;
+    font-size: 32px;
+    margin: 10px;
+    font-family: serif;
+    font-weight: 600;
+    letter-spacing: 8px;
+}
+
+.card-image1 {
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    width: 250px;
+    height: 350px;
+    background-color: rgb(166, 137, 74);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.card>h3 {
+    margin-top: 70px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    letter-spacing: 6px;
+}
+
+.card>p {
+    text-align: center;
+    line-height: 35px;
+    font-family: serif;
+    font-weight: 600;
+}
+
+.card .separator {
+    height: 20px;
+}
+
+.image1 {
+    width: 520px;
+    height: 350px;
+    background-image: url(http://csci571.com/hw/hw3/images/image1.png);
+    background-size: cover;
+}
+
+.passage {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.passage>p {
+    text-align: center;
+}
+
+.passage>h3 {
+    font-size: 28px;
+    font-family: serif;
+    font-weight: bold;
+    margin: 0;
+}
+
+.passage>p:first-of-type {
+    font-size: 28px;
+    font-family: serif;
+    font-weight: bold;
+    line-height: 45px;
+}
+
+.passage>p:last-of-type {
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb(166 137 74);
+}
+
+.image2 {
+    background-image: url(http://csci571.com/hw/hw3/images/image2.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 450px;
+    margin: 50px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.image2>.card {
+    margin-right: 50px;
+}
+
+.image2>.card>p {
+    letter-spacing: 4px;
+}
+
+footer {
+    margin: 100px 50px 50px;
+    padding: 45px 70px;
+    height: 150px;
+    box-sizing: border-box;
+    background-color: rgb(166 137 74);
+    display: flex;
+    color: white;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+footer>div {
+    display: flex;
+    column-gap: 15px;
+}
+
+footer>div>* {
+    margin: 0;
+    flex: 0 0 auto;
+}
+
+footer>div>.separator {
+    width: 1px;
+    height: 40px;
+    background-color: white;
+}
+
+.button {
+    box-sizing: border-box;
+    background-color: rgb(166 137 74);
+    border: 1px solid white;
+    width: 160px;
+    height: 40px;
+    padding: 10px 0;
+    color: white;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+footer>button {
+    align-self: center;
+}
