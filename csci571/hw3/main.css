@@ -1,5 +1,7 @@
 body {
     margin: 0;
+    width: 900px;
+    min-width: 900px;
 }
 
 nav {
@@ -19,8 +21,17 @@ nav>ul {
 
 nav>ul>li {
     padding-right: 50px;
-    font-size: 10px;
+    font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+nav>ul>li>a,
+nav>ul>li>a:active,
+nav>ul>li>a:hover,
+nav>ul>li>a:visited,
+nav>ul>li>a:link {
+    text-decoration: none;
+    color: black;
 }
 
 nav>ul>li:first-child {
@@ -36,10 +47,10 @@ nav>ul>li:first-child {
 .image3 {
     color: white;
     background-image: url(http://csci571.com/hw/hw3/images/image3.png);
-    background-position: center top -170px;
-    background-size: cover;
+    background-size: 900px;
+    background-position: top -100px left;
     background-attachment: fixed;
-    height: 560px;
+    height: 620px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,7 +58,7 @@ nav>ul>li:first-child {
 
 .image3>p {
     position: relative;
-    top: 120px;
+    top: 150px;
     font-size: 32px;
     margin: 10px;
     font-family: serif;
@@ -63,8 +74,10 @@ nav>ul>li:first-child {
 
 .card {
     width: 250px;
-    height: 350px;
-    background-color: rgb(166, 137, 74);
+    height: 380px;
+    background-image: url(http://csci571.com/hw/hw3/images/flower.png);
+    background-size: 250px;
+    background-position: 0 -10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,12 +99,12 @@ nav>ul>li:first-child {
 }
 
 .card .separator {
-    height: 20px;
+    height: 25px;
 }
 
 .image1 {
     width: 520px;
-    height: 350px;
+    height: 380px;
     background-image: url(http://csci571.com/hw/hw3/images/image1.png);
     background-size: cover;
 }
@@ -109,7 +122,7 @@ nav>ul>li:first-child {
 }
 
 .passage>h3 {
-    font-size: 28px;
+    font-size: 100px;
     font-family: serif;
     font-weight: bold;
     margin: 0;
@@ -131,10 +144,10 @@ nav>ul>li:first-child {
 
 .image2 {
     background-image: url(http://csci571.com/hw/hw3/images/image2.png);
-    background-size: cover;
-    background-position: center;
+    background-size: 800px;
+    background-position: 50px 0;
     background-attachment: fixed;
-    height: 450px;
+    height: 480px;
     margin: 50px;
     display: flex;
     flex-direction: row-reverse;
