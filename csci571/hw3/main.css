@@ -163,7 +163,7 @@ footer {
     padding: 45px 70px;
     height: 150px;
     box-sizing: border-box;
-    background-color: rgb(166 137 74);
+    background-color: rgb(175, 148, 83);
     display: flex;
     color: white;
     font-size: 12px;
@@ -188,7 +188,7 @@ footer>div>.separator {
 
 .button {
     box-sizing: border-box;
-    background-color: rgb(166 137 74);
+    background-color: rgb(175, 148, 83);
     border: 1px solid white;
     width: 160px;
     height: 40px;
