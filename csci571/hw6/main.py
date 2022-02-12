@@ -46,7 +46,7 @@ def stock_summary():
     resp = client.quote(symbol.upper())
     return {
         "results": {
-            "ticker": symbol,
+            "ticker": symbol.upper(),
             "t": resp.get("t", "?"),
             "pc": resp.get("pc", "?"),
             "o": resp.get("o", "?"),

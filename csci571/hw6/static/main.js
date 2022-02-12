@@ -20,6 +20,10 @@ function hideAllShown() {
     for (let elem of document.querySelectorAll(".show")) {
         elem.classList.remove("show");
     }
+
+    document.querySelector("div.company>table").hidden = true
+    document.querySelector("div.stock-summary>table").hidden = true
+
     document.querySelector("div.results > ul li.selected").classList.remove("selected")
     document.querySelector("div.results > ul li:first-child").classList.add("selected")
 }
@@ -62,6 +66,7 @@ function fetchFromStockSummary(param) {
         rows[6].querySelector("img").src = stockSummary.d > 0 ? "/static/img/GreenArrowUp.png" : "/static/img/RedArrowDown.png";
         rows[7].querySelector("span").innerText = stockSummary.dp;
         rows[7].querySelector("img").src = stockSummary.dp > 0 ? "/static/img/GreenArrowUp.png" : "/static/img/RedArrowDown.png";
+        document.querySelector("div.stock-summary>table").hidden = false;
     })
 }
 
@@ -253,3 +258,7 @@ tabs.addEventListener('click', e => {
 $("input#searchbar").autocomplete({
     source: input_history
 });
+
+document.querySelector("div.company td.company-logo img").addEventListener('load', e => {
+    document.querySelector("div.company > table").hidden = false
+})
