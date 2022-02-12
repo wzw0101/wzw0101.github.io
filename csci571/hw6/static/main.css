@@ -1,0 +1,283 @@
+body {
+    margin: 0;
+    width: 1500px;
+}
+
+form {
+    background: url(img/back.svg) center/cover;
+    height: 300px;
+}
+
+form > h1 {
+    width: max-content;
+    margin: 0 auto;
+    position: relative;
+    top: 40px;
+    font: 30px sans-serif;
+}
+
+.bar {
+    width: 800px;
+    border-radius: 20px;
+    border: 1px solid #f1efef;
+    margin: 0 auto;
+    background-color: white;
+    position: relative;
+    top: 65px;
+}
+
+.submit, .reset {
+    background-color: transparent;
+    border:none;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    cursor: pointer;
+}
+
+.submit > svg, .reset > svg {
+    width: 20px;
+    height: 20px;
+    fill: #c5c5c5;
+}
+
+.submit > svg:hover, .reset > svg:hover {
+    fill: black;
+}
+
+.submit {
+    left: 20px;
+}
+
+.searchbar {
+    position: relative;
+    left: 60px;
+    padding: 0;
+    margin: 0;
+    width: 680px;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    border-right: 1px #ebecf0 solid;
+}
+
+.reset {
+    right: 20px;
+}
+
+.no-record {
+    background-color: #e1e1e1;
+    font: 20px sans-serif;
+    text-align: center;
+    box-sizing: border-box;
+    width: 800px;
+    padding: 20px;
+    margin: 150px auto 0;
+    border-radius: 15px;
+    display: none;
+}
+
+.results {
+    width: 1100px;
+    margin: 0 auto;
+    display: none;
+}
+
+.results > ul {
+    list-style-type: none;
+    background-color: #ebecf0;
+    padding: 0;
+    display: flex;
+}
+
+.results > ul > li {
+    display: inline-block;
+    padding: 15px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+}
+
+.results > ul > li:hover {
+    background-color: #e1e1e1;
+}
+
+.results > ul > li.selected {
+    background-color: grey;
+}
+
+/* Company */
+
+.company {
+    display: none;
+}
+
+table {
+    margin: 0 auto;
+    table-layout: fixed;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+td, th {
+    padding: 5px;
+}
+
+th {
+    text-align: right;
+    width: 50%;
+}
+
+td {
+    text-align: left;
+    width: 50%;
+}
+
+tr {
+    border-top: 1px #cecece solid;
+    border-bottom: 1px #cecece solid;
+}
+
+.company > table tr:nth-child(1) {
+    border-top: none;
+}
+
+.company .company-logo {
+    text-align: center;
+}
+
+.company .company-logo img {
+    width: 150px;
+}
+
+/* Stock summary */
+
+.stock-summary {
+    display: none;
+}
+
+.change-arrow {
+    width: 1em;
+}
+
+.stock-summary tr:last-child {
+    border: none;
+}
+
+.indicator, .indicator-caption {
+    margin: 20px auto;
+    width: max-content;
+}
+
+.indicator {
+    display: flex;
+}
+
+.indicator-caption {
+    font-size: 20px;
+}
+
+.box {
+    color: white;
+    box-sizing: border-box;
+    width: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.strong-sell-text {
+    color: red;
+    width: min-content;
+    text-align: center;
+    margin-right: 10px;
+    font-weight: normal;
+}
+
+.strong-buy-text {
+    color: greenyellow;
+    width: min-content;
+    text-align: center;
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+.strong-sell {
+    background-color: red;
+}
+
+.sell {
+    background-color: rgb(200 104 80);
+}
+
+.hold {
+    background-color: rgb(119 148 92);
+}
+
+.buy {
+    background-color: rgb(59 202 109);
+}
+
+.strong-buy {
+    background-color: rgb(0 255 127);
+}
+
+.show {
+    display: block!important;
+}
+
+/* Charts */
+
+.charts {
+    display: none;
+    height: 500px;
+}
+
+/* News */
+
+.latest-news {
+    display: none;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding: 10px;
+    height: 100px;
+    background-color: #ebecf0;
+    margin-bottom: 20px;
+}
+
+.card img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+.card p {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card p.title {
+    font-weight: bold;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    box-shadow: 0 0 0 30px white inset !important;
+    /* background-color: white !important; */
+}
