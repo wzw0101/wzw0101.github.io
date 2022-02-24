@@ -40,14 +40,28 @@ form > h1 {
     cursor: pointer;
 }
 
-.submit > svg, .reset > svg {
-    width: 20px;
-    height: 20px;
-    fill: #c5c5c5;
+.submit img {
+    filter: invert(1);
 }
 
-.submit > svg:hover, .reset > svg:hover {
-    fill: black;
+.submit > div, .reset > div {
+    width: 20px;
+    height: 20px;
+    background-color: #cecece;
+}
+
+.submit > div:hover, .reset > div:hover {
+    background-color: black;
+}
+
+.submit > div {
+    -webkit-mask:url(img/search-solid.svg) center/cover;
+    mask:url(img/search-solid.svg) center/cover;
+}
+
+.reset > div {
+    -webkit-mask:url(img/times-solid.svg) center/cover;
+    mask:url(img/times-solid.svg) center/cover;
 }
 
 .submit {

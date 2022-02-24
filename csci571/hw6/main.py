@@ -3,11 +3,10 @@ import datetime
 from flask import Flask
 from flask import request
 from dateutil.relativedelta import relativedelta
-import finnhub
+import requests
 
 app = Flask(__name__)
 FINNHUB_API_KEY = "c824evqad3i9d12p6sog"
-client = finnhub.Client(api_key=FINNHUB_API_KEY)
 
 
 @app.route("/wzw")
@@ -20,8 +19,9 @@ def hello_world():
 
 @app.route("/company")
 def company():
-    symbol = request.args.get('searchkey', '')
-    resp = client.company_profile2(symbol=symbol.upper())
+    symbol = request.args.get('searchkey', '').upper()
+    resp = requests.get(
+        f"https://finnhub.io/api/v1/stock/profile2?symbol={symbol}&token={FINNHUB_API_KEY}").json()
     if not resp:
         return {
             "results": None,
@@ -42,11 +42,11 @@ def company():
 
 @app.route("/stocksummary")
 def stock_summary():
-    symbol = request.args.get('searchkey', '')
-    resp = client.quote(symbol.upper())
+    symbol = request.args.get('searchkey', '').upper()
+    resp = requests.get(
+        f"https://finnhub.io/api/v1/quote?symbol={symbol}&token={FINNHUB_API_KEY}").json()
     return {
         "results": {
-            "ticker": symbol.upper(),
             "t": resp.get("t", "?"),
             "pc": resp.get("pc", "?"),
             "o": resp.get("o", "?"),
@@ -60,8 +60,9 @@ def stock_summary():
 
 @app.route("/recommendation")
 def recommendation():
-    symbol = request.args.get('searchkey', '')
-    resp = client.recommendation_trends(symbol.upper())
+    symbol = request.args.get('searchkey', '').upper()
+    resp = requests.get(
+        f"https://finnhub.io/api/v1/stock/recommendation?symbol={symbol}&token={FINNHUB_API_KEY}").json()
     resp = resp[0] if len(resp) > 0 else {}
     return {
         "results": {
@@ -79,8 +80,10 @@ def charts():
     symbol = request.args.get('searchkey', '')
     to = datetime.datetime.now()
     _from = to - relativedelta(months=6, days=1)
-    resp = client.stock_candles(symbol.upper(), "D", int(
-        _from.timestamp()), int(to.timestamp()))
+    to = int(to.timestamp())
+    _from = int(_from.timestamp())
+    resp = requests.get(
+        f"https://finnhub.io/api/v1/stock/candle?symbol={symbol}&resolution=D&from={_from}&to={to}&token={FINNHUB_API_KEY}").json()
     return {
         "results": {
             "tc": [[1000 * t, c] for t, c in zip(resp.get("t", []), resp.get("c", []))],
@@ -89,12 +92,13 @@ def charts():
     }
 
 
-@app.route("/news")
+@ app.route("/news")
 def news():
-    symbol = request.args.get('searchkey', '')
+    symbol = request.args.get('searchkey', '').upper()
     to = datetime.date.today()
     _from = to - datetime.timedelta(days=30)
-    news_list = client.company_news(symbol.upper(), str(_from), str(to))
+    news_list = requests.get(
+        f"https://finnhub.io/api/v1/company-news?symbol={symbol}&from={str(_from)}&to={str(to)}&token={FINNHUB_API_KEY}").json()
     ret = []
     count = 0
     for news in news_list:
@@ -113,6 +117,6 @@ def news():
     }
 
 
-@app.route("/")
+@ app.route("/")
 def hw6():
     return app.send_static_file("hw6.html")

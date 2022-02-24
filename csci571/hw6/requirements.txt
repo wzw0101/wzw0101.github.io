@@ -1,7 +1,6 @@
 certifi==2021.10.8
 charset-normalizer==2.0.11
 click==8.0.3
-finnhub-python==2.4.9
 Flask==2.0.2
 idna==3.3
 itsdangerous==2.0.1
