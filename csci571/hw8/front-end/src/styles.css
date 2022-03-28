@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --bs-primary-rgb: 31, 31, 162;
+  --bs-primary: #1f1fa2;
+}
+
+html,
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  background-image: url('./background-graph.jpg');
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
+}

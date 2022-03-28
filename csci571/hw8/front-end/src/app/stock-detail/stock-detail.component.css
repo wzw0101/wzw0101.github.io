@@ -1,0 +1,16 @@
+img {
+  max-width: 100px;
+  width: 100%;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.btn svg {
+  transform: scale(1.3);
+}
+
+svg.watched {
+  fill: yellow;
+}

@@ -1,0 +1,12 @@
+svg {
+  width: 30px;
+  height: 30px;
+}
+
+#twitter-share-anchor svg {
+  fill: deepskyblue;
+}
+
+#fb-share-anchor svg {
+  fill: blue;
+}

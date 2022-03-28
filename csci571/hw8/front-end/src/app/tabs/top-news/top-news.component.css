@@ -1,0 +1,9 @@
+div.card {
+  min-height: 122px;
+  height: 100%;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+}

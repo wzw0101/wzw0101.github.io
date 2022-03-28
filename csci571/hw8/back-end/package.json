@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "axios": "^0.26.1",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.15"
+  },
+  "name": "csci571-hw8-be",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "npx nodemon main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

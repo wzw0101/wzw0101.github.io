@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ngb-alert *ngIf="bought" class="text-center my-5" [type]="'success'"
+        (closed)="bought = false; changedSymbol = undefined">
+        {{changedSymbol}} bought successfully.
+      </ngb-alert>
+      <ngb-alert *ngIf="sold" class="text-center my-5" [type]="'danger'"
+        (closed)="sold = false; changedSymbol = undefined;">
+        {{changedSymbol}} sold successfully.
+      </ngb-alert>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h1 class="my-3">My Portfolio</h1>
+      <h2 class="my-3">Money in Wallet: {{portfolioService.balance | currency}}</h2>
+    </div>
+  </div>
+  <div *ngIf="!portfolioService.getPurchasedStocks().length" class="row">
+    <div class="col">
+      <ngb-alert class="text-center" [dismissible]="false">
+        Currently you don't have any stock.
+      </ngb-alert>
+    </div>
+  </div>
+  <div *ngFor="let stock of portfolioService.getPurchasedStocks()" class="row mb-4">
+    <div class="col">
+      <div class="card">
+        <div (click)="router.navigate(['search', stock.symbol])" class="clickable card-header p-3">
+          <span class="h5 px-1">{{stock.symbol}}</span>
+          <span class="text-secondary fw-bold">{{stock.name}}</span>
+        </div>
+        <div class="card-body">
+          <div class="row fs-5">
+            <div class="col-lg">
+              <div class="row">
+                <div class="col-auto me-auto col-lg">
+                  <div class="row">
+                    <div class="col">Quantity:</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">Avg. Cost / Share:</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">Total Cost:</div>
+                  </div>
+                </div>
+
+                <div class="col-auto col-lg text-end">
+                  <div class="row">
+                    <div class="col">{{stock.count | number: '1.2-2'}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">{{stock.totalCost / stock.count | number: '1.2-2'}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">{{stock.totalCost | number: '1.2-2'}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg">
+              <div class="row">
+                <div class="col-auto col-lg me-auto">
+                  <div class="row">
+                    <div class="col">Change:</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">Current Price:</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">Market Value:</div>
+                  </div>
+                </div>
+                <div class="col-auto col-lg text-end"
+                  [class.text-success]="stockQuote[stock.symbol] && (stockQuote[stock.symbol].c - stock.totalCost / stock.count) > 0"
+                  [class.text-danger]="stockQuote[stock.symbol] && (stockQuote[stock.symbol].c - stock.totalCost / stock.count) < 0">
+                  <div class=" row">
+                    <div class="col">
+                      <span
+                        *ngIf="stockQuote[stock.symbol] && (stockQuote[stock.symbol].c - stock.totalCost / stock.count) > 0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                          <path
+                            d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                        </svg>
+                      </span>
+                      <span
+                        *ngIf="stockQuote[stock.symbol] && (stockQuote[stock.symbol].c - stock.totalCost / stock.count) < 0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                          <path
+                            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                      </span>
+                      {{(stockQuote[stock.symbol]?.c || 0) - stock.totalCost / stock.count | number: '1.2-2'}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      {{stockQuote[stock.symbol]?.c || 0 | number: '1.2-2'}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      {{(stockQuote[stock.symbol]?.c || 0) * stock.count | number: '1.2-2'}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+          <button class="btn btn-primary " (click)="open(stock.symbol, stockQuote[stock.symbol])">Buy</button>
+          <button class="btn btn-danger mx-3" (click)="open(stock.symbol, stockQuote[stock.symbol], true)">Sell</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

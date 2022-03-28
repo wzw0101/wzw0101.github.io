@@ -1,0 +1,21 @@
+.btn:focus {
+  box-shadow: none;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+div.input-group {
+  border-color: var(--bs-primary) !important;
+}
+
+button[type='submit'] svg {
+  fill: var(--bs-primary);
+}
+
+
+button[type='reset'] path {
+  stroke: var(--bs-primary);
+  stroke-width: 1px;
+}

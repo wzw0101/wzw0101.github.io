@@ -1,0 +1,18 @@
+<div class="container p-3">
+  <div class="row row-cols-lg-2 row-cols-1 align-items-stretch">
+    <div class="col g-3" *ngFor="let news of searchService.newsList">
+      <div (click)="open(news)" class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-3">
+              <img class="rounded" [src]="news.image">
+            </div>
+            <div class="col-lg-9 overflow-hidden">
+              <p class="card-text">{{news.headline}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

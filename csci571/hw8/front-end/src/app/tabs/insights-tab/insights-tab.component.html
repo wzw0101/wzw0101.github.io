@@ -1,0 +1,45 @@
+<div class="container p-3">
+  <div class="row text-center justify-content-center mb-4">
+    <div class="col col-lg-6">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h3 class="my-3">Social Sentiments</h3>
+        </div>
+      </div>
+      <div class="row fw-bold border-top border-bottom bg-secondary bg-opacity-25">
+        <div class="col-6 py-2">{{searchService.companyProfile?.name}}</div>
+        <div class="col-3 py-2">Reddit</div>
+        <div class="col-3 py-2">Twitter</div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col-6 fw-bold py-2 border-bottom bg-secondary bg-opacity-25">Total Mentions</div>
+        <div class="col-3 py-2">{{searchService.redditMention?.mention}}</div>
+        <div class="col-3 py-2">{{searchService.twitterMention?.mention}}</div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col-6 fw-bold py-2 border-bottom bg-secondary bg-opacity-25">Positive Mentions</div>
+        <div class="col-3 py-2">{{searchService.redditMention?.positiveMention}}</div>
+        <div class="col-3 py-2">{{searchService.twitterMention?.positiveMention}}</div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col-6 fw-bold py-2 border-bottom bg-secondary bg-opacity-25">Negative Mentions</div>
+        <div class="col-3 py-2">{{searchService.redditMention?.negativeMention}}</div>
+        <div class="col-3 py-2">{{searchService.twitterMention?.negativeMention}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg">
+      <highcharts-chart [Highcharts]="searchService.Highcharts" [options]="searchService.recommendationsChartOption"
+        [(update)]="searchService.recommendationsChartUpdate" [constructorType]="'chart'"
+        [callbackFunction]="recChartCallback()" style="width: 100%; max-width: 600px; display: block;">
+      </highcharts-chart>
+    </div>
+    <div class="col-lg">
+      <highcharts-chart [Highcharts]="searchService.Highcharts" [options]="searchService.earningsChartOption"
+        [(update)]="searchService.earningsChartUpdate" [callbackFunction]="earningsChartCallback()"
+        [constructorType]="'chart'" style="width: 100%; max-width: 600px; display: block;">
+      </highcharts-chart>
+    </div>
+  </div>
+</div>

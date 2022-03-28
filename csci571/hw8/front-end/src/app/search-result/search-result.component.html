@@ -1,0 +1,39 @@
+<div id="search-result" *ngIf="!searchService.searching">
+  <div id="search-success" *ngIf="searchService.companyProfile && !searchService.failed">
+    <app-stock-detail></app-stock-detail>
+
+    <div class="row">
+      <div class="col">
+        <mat-tab-group dynamicHeight (selectedTabChange)="chartTab.reflow(); insightsTab.reflow();" mat-stretch-tabs
+          animationDuration="0ms">
+          <mat-tab label="Summary">
+            <app-summary-tab></app-summary-tab>
+          </mat-tab>
+          <mat-tab label="Top News">
+            <app-top-news></app-top-news>
+          </mat-tab>
+          <mat-tab label="Charts">
+            <app-charts-tab #chartTab></app-charts-tab>
+          </mat-tab>
+          <mat-tab label="Insights">
+            <app-insights-tab #insightsTab></app-insights-tab>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+    </div>
+
+  </div>
+  <div id="search-failed" *ngIf="searchService.failed">
+    <ngb-alert *ngIf="!searchService.failOnEmpty" [type]="'danger'" class="text-center" [dismissible]="false">
+      No data found. Please enter a valid Ticker
+    </ngb-alert>
+    <ngb-alert *ngIf="searchService.failOnEmpty" [type]="'danger'" class="text-center" (closed)="searchService.failed = false">
+      Please enter a valid ticker
+    </ngb-alert>
+  </div>
+</div>
+
+<div *ngIf=" searchService.searching" class="row justify-content-center">
+      <mat-spinner [diameter]="60"></mat-spinner>
+  </div>

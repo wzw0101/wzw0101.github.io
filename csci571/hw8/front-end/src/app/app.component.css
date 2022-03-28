@@ -1,0 +1,9 @@
+footer {
+  background-color: gainsboro;
+  height: 3.5rem;
+  line-height: 3.5rem;
+}
+
+.content-wrap {
+  padding-bottom: 3.5rem;
+}

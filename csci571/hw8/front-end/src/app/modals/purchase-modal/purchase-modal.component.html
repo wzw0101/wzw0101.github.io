@@ -1,0 +1,42 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="modal-header">
+    <h4 class="modal-title">{{companyProfile!.ticker}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">Current Price: {{quote?.c | number: '1.2-2'}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Money in Wallet: ${{portfolioService.balance | number: '1.2-2'}}</div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <label for="quantity">Quantity</label>
+        </div>
+        <div class="col-auto">
+          <input [(ngModel)]="quantity" class="form-control" type="number" name="quantity">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-danger">
+          <p class="my-3" *ngIf="!sell && (quantity || 0) * (quote?.c || 0) > portfolioService.balance">
+            Not enough money in wallet!
+          </p>
+          <p class="my-3"
+            *ngIf="sell && (quantity || 0) > (portfolioService.stocks[companyProfile!.ticker]?.count || 0)">
+            You cannot sell the stocks that you don't have!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex">
+    <div class="me-auto">Total: {{((quantity || 0) * (quote?.c || 0)) | number: '1.2-2'}}</div>
+    <button *ngIf="!sell" type="submit" class="btn btn-success"
+      [disabled]="!quantity || quantity * (quote?.c || 0) > portfolioService.balance">Buy</button>
+    <button *ngIf="sell" type="submit" class="btn btn-success"
+      [disabled]="!quantity || quantity > (portfolioService.stocks[companyProfile!.ticker]?.count || 0)">Sell</button>
+  </div>
+</form>
