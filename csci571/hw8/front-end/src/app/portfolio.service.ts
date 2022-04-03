@@ -35,12 +35,12 @@ export class PortfolioService {
     }
 
     let stock = this.stocks[companyProfile.ticker];
-    stock.count += cnt;
     if (cnt < 0) {
       stock.totalCost += stock.totalCost / stock.count * cnt;
     } else {
       stock.totalCost += cost;
     }
+    stock.count += cnt;
 
     this.balance -= cost;
 
