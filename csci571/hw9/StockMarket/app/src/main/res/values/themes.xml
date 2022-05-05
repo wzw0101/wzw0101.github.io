@@ -1,0 +1,41 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.StockMarket" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?colorPrimaryVariant</item>
+
+        <!-- Customize your theme here. -->
+        <item name="autoCompleteTextViewStyle">@style/myAutoCompleteTextViewStyle</item>
+        <item name="actionBarTheme">@style/MyActionBarTheme</item>
+    </style>
+
+    <style name="Theme.StockMarket.Detail">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorLink">#FF0000FF</item>
+    </style>
+
+    <style name="Theme.StockMarket.ThemeLauncher">
+        <item name="android:windowBackground">@drawable/ic_splash_screen</item>
+    </style>
+
+    <style name="MyActionBarTheme" parent="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:textColorTertiary">@color/black</item>
+        <item name="android:textColorHint">#8A000000</item>
+    </style>
+
+    <style name="myAutoCompleteTextViewStyle" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:popupBackground">@color/white</item>
+    </style>
+</resources>

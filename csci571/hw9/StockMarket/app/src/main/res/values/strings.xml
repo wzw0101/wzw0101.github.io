@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Stocks</string>
+    <string name="header_date">4 April 2022</string>
+    <string name="divider_portfolio">PORTFOLIO</string>
+    <string name="header_net_worth">Net Worth</string>
+    <string name="header_cash_balance">Cash Balance</string>
+    <string name="divider_fav">FAVORITES</string>
+
+    <string name="search_hint">Search Hint</string>
+    <string name="search_title">Search</string>
+
+    <!--  Search Detail  -->
+    <string name="detail_container">Detail Container</string>
+    <string name="desc_company_image">Company Logo</string>
+    <string name="desc_trending_image">Trending Image</string>
+    <string name="title_action_favorite">Add to favorite</string>
+    <string name="default_int_value">0</string>
+    <string name="default_double_value">0.00</string>
+    <string name="default_empty_price">$0.00</string>
+    <string name="default_ticker">TickerHolder</string>
+    <string name="default_name">Name</string>
+    <string name="portfolio_section_header">Portfolio</string>
+    <string name="portfolio_section_shares_owned">Shares Owned:</string>
+    <string name="portfolio_section_avg_cost_per_share">Avg. Cost / Share:</string>
+    <string name="portfolio_section_total_cost">Total Cost:</string>
+    <string name="portfolio_section_change">Change:</string>
+    <string name="portfolio_section_market_value">Market Value:</string>
+    <string name="portfolio_section_trade_button">TRADE</string>
+    <string name="trade_dialog_shares">shares</string>
+    <string name="stats_section_header">Stats</string>
+    <string name="stats_section_open_price">Open Price:</string>
+    <string name="stats_section_high_price">High Price:</string>
+    <string name="stats_section_low_price">Low Price:</string>
+    <string name="stats_section_prev_close">Prev. Close:</string>
+    <string name="about_section_header">About</string>
+    <string name="about_section_ipo_start_date">IPO Start Date</string>
+    <string name="about_section_industry">Industry</string>
+    <string name="about_section_webpage">Webpage</string>
+
+</resources>

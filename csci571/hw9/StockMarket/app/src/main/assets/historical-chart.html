@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/volume-by-price.js"></script>
+    <style>
+        #container {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="container"></div>
+<script>
+        const symbol = query.getSymbol(),
+            // set the allowed units for data grouping
+            groupingUnits = [
+                [
+                    'week', // unit name
+                    [1] // allowed multiples
+                ],
+                [
+                    'month',
+                    [1, 2, 3, 4, 6]
+                ]
+            ]
+        let now = new Date(),
+            before = new Date()
+        before.setFullYear(now.getFullYear() - 2)
+        fetch(
+                `/api/candle/${symbol}?resolution=D&from=${Math.floor(before.getTime() / 1000)}&to=${Math.floor(now.getTime() / 1000)}`
+            )
+            .then(resp => {
+                return resp.json()
+            }).then(candle => {
+                const ohlc = candle.t.map((e,
+                        i) => [e * 1000, candle.o[i], candle.h[i], candle.l[i], candle.c[i]]),
+                    volume = candle.t.map((e, i) => [e * 1000, candle.v[i]])
+
+                Highcharts.stockChart('container', {
+                    chart: {
+                        backgroundColor: null,
+                    },
+
+                    rangeSelector: {
+                        selected: 2
+                    },
+
+                    title: {
+                        text: `${symbol.toUpperCase()} Historical`
+                    },
+
+                    subtitle: {
+                        text: 'With SMA and Volume by Price technical indicators'
+                    },
+
+                    yAxis: [{
+                        startOnTick: false,
+                        endOnTick: false,
+                        labels: {
+                            align: 'right',
+                            x: -3
+                        },
+                        title: {
+                            text: 'OHLC'
+                        },
+                        height: '60%',
+                        lineWidth: 2,
+                        resize: {
+                            enabled: true
+                        }
+                    }, {
+                        labels: {
+                            align: 'right',
+                            x: -3
+                        },
+                        title: {
+                            text: 'Volume'
+                        },
+                        top: '65%',
+                        height: '35%',
+                        offset: 0,
+                        lineWidth: 2
+                    }],
+
+                    tooltip: {
+                        split: true
+                    },
+
+                    plotOptions: {
+                        series: {
+                            dataGrouping: {
+                                units: groupingUnits
+                            }
+                        }
+                    },
+
+                    series: [{
+                        type: 'candlestick',
+                        name: symbol.toUpperCase(),
+                        id: 'ohlc',
+                        zIndex: 2,
+                        data: ohlc
+                    }, {
+                        type: 'column',
+                        name: 'Volume',
+                        id: 'volume',
+                        data: volume,
+                        yAxis: 1
+                    }, {
+                        type: 'vbp',
+                        linkedTo: 'ohlc',
+                        params: {
+                            volumeSeriesID: 'volume'
+                        },
+                        dataLabels: {
+                            enabled: false
+                        },
+                        zoneLines: {
+                            enabled: false
+                        }
+                    }, {
+                        type: 'sma',
+                        linkedTo: 'ohlc',
+                        zIndex: 1,
+                        marker: {
+                            enabled: false
+                        }
+                    }]
+                });
+            })
+</script>
+</body>
+
+</html>

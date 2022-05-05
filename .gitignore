@@ -1,7 +1,9 @@
 *.pdf
 *.zip
+*.mp4
 __pycache__/
 venv/
 resources/
 .DS_Store
 node_modules/
+test/

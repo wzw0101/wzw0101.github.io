@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <style>
+        #container {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script>
+        const symbol = query.getSymbol()
+        fetch(`/api/recommendation/${symbol}`).then(resp => resp.json()).then(recommendationList => {
+            Highcharts.chart('container', {
+                chart: {
+                    backgroundColor: null,
+                },
+
+                title: {
+                    text: 'Recommendation Trends'
+                },
+
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+
+                xAxis: {
+                    categories: recommendationList.map(recommendation => recommendation.period),
+                },
+
+                yAxis: {
+                    title: {
+                        text: '#Analysis'
+                    }
+                },
+
+                series: [{
+                    type: 'column',
+                    name: 'Strong Buy',
+                    data: recommendationList.map(item => item.strongBuy),
+                    color: 'forestgreen'
+                }, {
+                    type: 'column',
+                    name: 'Buy',
+                    data: recommendationList.map(item => item.buy),
+                    color: 'mediumseagreen',
+                }, {
+                    type: 'column',
+                    name: 'Hold',
+                    data: recommendationList.map(item => item.hold),
+                    color: 'darkgoldenrod'
+                }, {
+                    type: 'column',
+                    name: 'Sell',
+                    data: recommendationList.map(item => item.sell),
+                    color: 'tomato',
+                }, {
+                    type: 'column',
+                    name: 'Strong Sell',
+                    data: recommendationList.map(item => item.strongSell),
+                    color: 'brown'
+                }]
+            })
+        })
+    </script>
+</body>
+
+</html>

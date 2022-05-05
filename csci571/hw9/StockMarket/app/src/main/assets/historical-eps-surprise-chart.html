@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <style>
+        #container {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script>
+        const symbol = query.getSymbol()
+        fetch(`/api/earnings/${symbol}`).then(resp => resp.json()).then(earningsList => {
+            Highcharts.chart('container', {
+                chart: {
+                    backgroundColor: null,
+                },
+
+                title: {
+                    text: 'Historical EPS Surprises',
+                },
+
+                yAxis: {
+                    title: {
+                        text: 'Quarterly EPS',
+                    }
+                },
+
+                xAxis: {
+                    categories: earningsList.map(item =>
+                        `<div style='text-align: center'>${item.period}<br>Surpirse: ${item.surprise || 0}<br><\div>`
+                    ),
+                    labels: {
+                        useHTML: true,
+                    }
+                },
+
+                tooltip: {
+                    shared: true,
+                },
+
+                series: [{
+                    type: 'spline',
+                    data: earningsList.map(item => item.actual || 0),
+                    name: 'Actual',
+                }, {
+                    type: 'spline',
+                    data: earningsList.map(item => item.estimate || 0),
+                    name: 'Estimate',
+                }]
+            })
+        })
+    </script>
+</body>
+
+</html>
